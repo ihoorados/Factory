@@ -15,6 +15,7 @@
 		70670FD225D02F360080E4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70670FD025D02F360080E4D0 /* LaunchScreen.storyboard */; };
 		70670FDD25D02F360080E4D0 /* FactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70670FDC25D02F360080E4D0 /* FactoryTests.swift */; };
 		70670FE825D02F360080E4D0 /* FactoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70670FE725D02F360080E4D0 /* FactoryUITests.swift */; };
+		70670FF925D02F690080E4D0 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70670FF825D02F690080E4D0 /* Flow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		70670FE325D02F360080E4D0 /* FactoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FactoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70670FE725D02F360080E4D0 /* FactoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryUITests.swift; sourceTree = "<group>"; };
 		70670FE925D02F360080E4D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70670FF825D02F690080E4D0 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				70670FCE25D02F360080E4D0 /* Assets.xcassets */,
 				70670FD025D02F360080E4D0 /* LaunchScreen.storyboard */,
 				70670FD325D02F360080E4D0 /* Info.plist */,
+				70670FF825D02F690080E4D0 /* Flow.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70670FCA25D02F350080E4D0 /* ViewController.swift in Sources */,
+				70670FF925D02F690080E4D0 /* Flow.swift in Sources */,
 				70670FC625D02F350080E4D0 /* AppDelegate.swift in Sources */,
 				70670FC825D02F350080E4D0 /* SceneDelegate.swift in Sources */,
 			);

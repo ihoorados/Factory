@@ -4,30 +4,80 @@
 //
 //  Created by Hoorad Ramezani on 2/7/21.
 //
-
+import Foundation
 import XCTest
 @testable import Factory
 
-class FactoryTests: XCTestCase {
+class FlowTest: XCTestCase{
+    
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func test_Start_With_NoQuestion_doesNotRoutedToQuestion(){
+        makeSUT(question: []).start()
+        XCTAssertTrue(router.routerQuestions.isEmpty)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_Start_With_OneQuestion_route_ToCorrectQuestion(){
+        makeSUT(question: ["Q1","Q2"]).start()
+        XCTAssertEqual(router.routerQuestions, ["Q1"])
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func test_Start_With_Tow_Question_route_TofirstQuestion(){
+        makeSUT(question: ["Q1","Q2"]).start()
+        XCTAssertEqual(router.routerQuestions, ["Q1"])
     }
+    
+    func test_Start_With_Tow_Question_route_To_first_QuestionTwice(){
+        let sut = makeSUT(question: ["Q1","Q2"])
+        sut.start()
+        sut.start()
+        XCTAssertEqual(router.routerQuestions, ["Q1","Q1"])
+    }
+    
+    func test_StartAnd_answerFirst_Questions_route_To_Second_Question(){
+        let sut = makeSUT(question: ["Q1","Q2"])
+        sut.start()
+        router.answerCallBack("A1")
+        XCTAssertEqual(router.routerQuestions, ["Q1","Q2"])
+    }
+    
+    func test_Start_answerFirstAndSecound_Questions_routeToSecondAndThird_Question(){
+        
+        let sut = makeSUT(question: ["Q1","Q2","Q3"])
+        sut.start()
+        XCTAssertEqual(router.routerQuestions, ["Q1"])
+        router.answerCallBack("A1")
+        XCTAssertEqual(router.routerQuestions, ["Q1","Q2"])
+        router.answerCallBack("A2")
+        XCTAssertEqual(router.routerQuestions, ["Q1","Q2","Q3"])
+    }
+    
+    func test_Start_answerFirst_Questions_WithOneQuestion_doesNotRoutedToQuestion(){
+        
+        let sut = makeSUT(question: ["Q1"])
+        sut.start()
+        router.answerCallBack("A1")
+        XCTAssertEqual(router.routerQuestions, ["Q1"])
+    }
+    
+    
+    // MARK: Helper
+    
+    let router = RouterSpy()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func makeSUT(question: [String]) -> Flow{
+        return Flow(router: router, question: question)
+    }
+    
+    class RouterSpy : Router{
+        var routerQuestions: [String] = []
+        var answerCallBack: ((String) -> Void) = {_ in}
+        
+        func routeTo(question: String, answerCallBack: @escaping (String) -> Void){
+            routerQuestions.append(question)
+            self.answerCallBack = answerCallBack
         }
+        
     }
-
+    
 }
