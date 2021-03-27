@@ -8,7 +8,7 @@ import Foundation
 import XCTest
 @testable import Factory
 
-class FlowTest: XCTestCase{
+class FactoryQuizTest: XCTestCase{
         
     func test_Start_With_NoQuestion_doesNotRoutedToQuestion(){
         makeSUT(question: []).start()
@@ -66,6 +66,7 @@ class FlowTest: XCTestCase{
     // MARK: Helper
     
     let router = RouterSpy()
+    
     func makeSUT(question: [String]) -> Flow<String, String, RouterSpy>{
         return Flow(router: router, question: question)
     }
